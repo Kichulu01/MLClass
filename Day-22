@@ -1,0 +1,191 @@
+What is Feature Scaling?
+🔹 Definition
+
+Feature Scaling is a technique used to standardize or normalize numerical features so they fall within a similar range.
+
+🔹 Why is it needed?
+
+Many machine learning algorithms are sensitive to feature magnitude.
+If one feature has a large range (Salary: 40,000) and another has a small range (CGPA: 8), the larger one dominates the model.
+
+🔹 Pipeline Position
+
+Feature Scaling is usually done:
+
+After handling missing values
+
+After encoding categorical variables
+
+Just before feeding data into the ML model
+
+2️⃣ Types of Feature Scaling
+✅ A. Standardization (Z-Score Normalization)
+🔹 Goal
+
+Transform data so that:
+
+Mean = 0
+
+Standard Deviation = 1
+
+🔹 Formula
+x′=x−μ/σ​​
+
+
+Where:
+
+𝑥
+x = original value
+
+𝜇
+μ = mean
+
+𝜎
+σ = standard deviation
+
+🔹 Example
+
+If:
+
+Mean (Age) = 32
+
+Standard Deviation = 10
+
+For value 27:
+
+(
+27
+−
+32
+)
+/
+10
+=
+−
+0.5
+(27−32)/10=−0.5
+
+For value 15:
+
+(
+15
+−
+32
+)
+/
+10
+=
+−
+1.7
+(15−32)/10=−1.7
+🔹 Geometric Interpretation
+
+Standardization involves:
+
+Mean Centering
+Move the dataset so its center lies at (0,0)
+
+Scaling
+Adjust spread so standard deviation becomes 1
+
+If spread is large → compress
+If spread is small → expand
+
+✅ B. Normalization (Min-Max Scaling)
+🔹 Goal
+
+Scale data between a fixed range (usually 0 to 1)
+
+🔹 Formula
+
+​
+	​
+
+🔹 When to Use
+
+When you need bounded values (like Neural Networks)
+
+When data does not follow normal distribution
+
+3️⃣ Why Feature Scaling is Important
+🔹 Distance-Based Algorithms Problem
+
+Algorithms like:
+
+K-Nearest Neighbours (KNN)
+
+K-Means
+
+SVM
+
+Use Euclidean distance.
+
+If:
+
+Age = 20
+
+Salary = 40,000
+
+Distance calculation will be dominated by Salary.
+
+After scaling → both contribute equally.
+
+4️⃣ Impact on Different Algorithms
+Algorithm	Scaling Required?	Reason
+KNN	✅ Yes	Uses distance
+SVM	✅ Yes	Margin depends on scale
+Logistic Regression	✅ Yes	Uses gradient descent
+PCA	✅ Yes	Captures variance
+Neural Networks	✅ Yes	Faster convergence
+Decision Trees	❌ No	Uses split comparisons
+Random Forest	❌ No	Tree-based
+XGBoost	❌ No	Tree-based
+5️⃣ Effect on Model Performance
+
+Example:
+
+Logistic Regression
+Without scaling → 65% accuracy
+With scaling → 86% accuracy
+
+Decision Trees
+Accuracy remains same (scale-invariant)
+
+6️⃣ Handling Outliers
+
+⚠ Important:
+
+Standardization does NOT remove outliers.
+
+If an extreme value exists:
+
+It remains extreme after scaling.
+
+It just moves to a different numerical scale.
+
+To handle outliers:
+
+Use Robust Scaling
+
+Or remove outliers separately
+
+7️⃣ When Must You Use Standardization?
+✅ Must Use:
+
+KNN
+
+SVM
+
+PCA
+
+Neural Networks
+
+Gradient Descent based models
+
+❌ Not Necessary:
+
+Decision Trees
+
+Random Forest
+
+Gradient Boosted Trees
