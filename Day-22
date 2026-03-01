@@ -98,7 +98,7 @@ Scale data between a fixed range (usually 0 to 1)
 
 🔹 Formula
 
-​
+x! = x-xmin/xmax-xmin​
 	​
 
 🔹 When to Use
