@@ -1,0 +1,90 @@
+. What is Normalization?
+Normalization is a feature scaling technique used during data preparation for machine learning. Its primary goal is to change the values of numerical columns to a common scale without distorting the differences in the ranges of values or losing information.
+• Why it's used: Numerical quantities consist of magnitude and units (e.g., weight in kg or lbs). Machine learning algorithms often perform better when units are eliminated, and only the magnitudes are kept on a common scale.
+• Geometric Intuition: It essentially "squeezes" or compresses your data into a unit rectangle (2D), unit cube (3D), or unit hypercube (higher dimensions).
+
+--------------------------------------------------------------------------------
+2. Key Normalization Techniques
+A. Min-Max Scaling
+This is the most common technique, often referred to simply as "Normalization".
+• Range: It scales the data strictly between 0 and 1.
+• Formula: X 
+new
+​
+ = 
+x 
+max
+​
+ −x 
+min
+​
+ 
+x 
+i
+​
+ −x 
+min
+​
+ 
+​
+ .
+• Best Use Case: It is highly effective when you already know the minimum and maximum values of your data, such as in Image Processing (where pixel values are 0-255).
+B. Mean Normalization
+• Range: Usually scales values between -1 and 1.
+• Formula: X 
+new
+​
+ = 
+x 
+max
+​
+ −x 
+min
+​
+ 
+x 
+i
+​
+ −mean
+​
+ .
+• Best Use Case: Used when you need centered data (where the mean is 0). Note that Scikit-Learn does not have a built-in class for this; you must code it manually.
+C. Max Absolute Scaling (MaxAbsScaling)
+• Formula: X 
+new
+​
+ = 
+∣x 
+max
+​
+ ∣
+x 
+i
+​
+ 
+​
+ .
+• Best Use Case: Specifically recommended for sparse data or sparse matrices (data containing many zeros).
+D. Robust Scaling
+• Formula: X 
+new
+​
+ = 
+75 
+th
+  percentile−25 
+th
+  percentile
+x 
+i
+​
+ −median
+​
+ .
+• Best Use Case: It is robust to outliers. If your dataset contains many outliers that might skew Min-Max scaling, Robust Scaling is a better choice as it uses the median and Interquartile Range (IQR).
+
+--------------------------------------------------------------------------------
+3. Practical Tips for Preparation
+• Standardization vs. Normalization: Most machine learning problems are solved more effectively using Standardization, but Normalization is essential for specific scenarios like deep learning or image processing.
+• Impact of Outliers: In Min-Max scaling, outliers can compress the "normal" data into a very small range, which is why Robust Scaling is preferred if outliers are present.
+• Experimentation: Machine learning is about experimentation; it is often useful to try different scaling techniques to see which one yields the best performance for your specific dataset.
